@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: emasjid-demo-landing-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: emasjid-demo-landing
+  template:
+    metadata:
+      labels:
+        app: emasjid-demo-landing
+    spec:
+      containers:
+        - name: emasjid-demo-landing-container
+          image: docker-registry:5000/emasjid-demo-landing:1.0.3b
+          ports:
+            - containerPort: 3000
+          resources:
+            limits:
+              cpu: "40m"
+              memory: "32Mi"
+            requests:
+              cpu: "20m"
+              memory: "24Mi"
+      imagePullSecrets:
+        - name: regcred
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: emasjid-demo-landing-service
+spec:
+  selector:
+    app: emasjid-demo-landing
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 3000
+  type: ClusterIP
