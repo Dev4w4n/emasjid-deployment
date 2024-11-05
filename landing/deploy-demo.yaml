@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: emasjid-demo-landing-deployment
+  name: emasjid-demov2-landing-deployment
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: emasjid-demo-landing
+      app: emasjid-demov2-landing
   template:
     metadata:
       labels:
-        app: emasjid-demo-landing
+        app: emasjid-demov2-landing
     spec:
       containers:
-        - name: emasjid-demo-landing-container
-          image: docker-registry:5000/emasjid-demo-landing:1.0.3b
+        - name: emasjid-demov2-landing-container
+          image: docker-registry:5000/emasjid-demov2-landing::2.0.0zb
           ports:
             - containerPort: 3000
           resources:
@@ -30,10 +30,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: emasjid-demo-landing-service
+  name: emasjid-demov2-landing-service
 spec:
   selector:
-    app: emasjid-demo-landing
+    app: emasjid-demov2-landing
   ports:
     - protocol: TCP
       port: 80
