@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: emasjid-demov2-landing-container
-          image: docker-registry:5000/emasjid-demov2-landing::2.0.0zb
+          image: docker-registry:5000/emasjid-demov2-landing::2.0.0zc
           ports:
             - containerPort: 3000
           resources:
